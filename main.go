@@ -1,8 +1,18 @@
+/**
+*
+*  /\_/\
+* ( o.o )
+*  > ^ <
+*
+ */
+
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 // Define a home handler function which writes a byte slice containing
@@ -12,11 +22,25 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func snippetView(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display a specific snippet..."))
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+
+	msg := fmt.Sprintf("Display a snippet with ID %d...", id)
+
+	w.Write([]byte(msg))
 }
 
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Display a form for creating new snippet"))
+}
+
+func snippetCreatePost(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(201)
+
+	w.Write([]byte("Create a new snippet"))
 }
 
 func main() {
@@ -24,9 +48,10 @@ func main() {
 	// register the home function as the handler for the "/" URL pattern.
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/{$}", home) // Restrict this route to exact matches on / only.
-	mux.HandleFunc("/snippet/view", snippetView)
-	mux.HandleFunc("/snippet/create", snippetCreate)
+	mux.HandleFunc("GET /{$}", home) // Restrict this route to exact matches on / only.
+	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
+	mux.HandleFunc("GET /snippet/create", snippetCreate)
+	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
 
 	// Print a log message to say that the server is starting.
 	log.Print("starting server on :4000")
