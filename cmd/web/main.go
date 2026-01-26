@@ -12,8 +12,9 @@ package main
 
 import (
 	"flag"
-	"log"
+	"log/slog"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -23,6 +24,11 @@ func main() {
 	// ! Important, to use flag.Parse() method to parse the command-line flag
 	// ! flag.Parse() returns values as a pointer, so we need to dereference it with *
 	flag.Parse()
+
+	// Setup custom logger
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+		AddSource: true,
+	}))
 
 	// Use the http.NewServeMux() function to initialize a new servemux, then
 	// register the home function as the handler for the "/" URL pattern.
@@ -39,7 +45,7 @@ func main() {
 	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
 
 	// Print a log message to say that the server is starting.
-	log.Printf("starting server on %s", *addr)
+	logger.Info("starting server", "addr", *addr)
 
 	// Use the http.ListenAndServe() function to start a new web server. We pass in
 	// two parameters: the TCP network address to listen on (in this case ":4000")
@@ -48,5 +54,8 @@ func main() {
 	// program. Note that any error returned by http.ListenAndServe() is always
 	// non-nil.
 	err := http.ListenAndServe(*addr, mux)
-	log.Fatal(err)
+
+	// * Log the error using custom logger and terminate the application
+	logger.Error(err.Error())
+	os.Exit(1)
 }
