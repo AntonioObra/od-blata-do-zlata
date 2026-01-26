@@ -20,6 +20,11 @@ func main() {
 	// register the home function as the handler for the "/" URL pattern.
 	mux := http.NewServeMux()
 
+	// Create a file server which servers files out of the "./ui/static" dir
+	fileServer := http.FileServer(http.Dir("./ui/static/"))
+
+	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
+
 	mux.HandleFunc("GET /{$}", home) // Restrict this route to exact matches on / only.
 	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
 	mux.HandleFunc("GET /snippet/create", snippetCreate)
