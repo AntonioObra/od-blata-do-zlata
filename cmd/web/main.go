@@ -1,10 +1,10 @@
 /**
 *
+* Main
+*
 *  /\_/\
 * ( o.o )
 *  > ^ <
-*
-* Main
 *
  */
 
@@ -40,20 +40,6 @@ func main() {
 		logger: logger,
 	}
 
-	// Use the http.NewServeMux() function to initialize a new servemux, then
-	// register the home function as the handler for the "/" URL pattern.
-	mux := http.NewServeMux()
-
-	// Create a file server which servers files out of the "./ui/static" dir
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-
-	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
-
-	mux.HandleFunc("GET /{$}", app.home) // Restrict this route to exact matches on / only.
-	mux.HandleFunc("GET /snippet/view/{id}", app.snippetView)
-	mux.HandleFunc("GET /snippet/create", app.snippetCreate)
-	mux.HandleFunc("POST /snippet/create", app.snippetCreatePost)
-
 	// Print a log message to say that the server is starting.
 	app.logger.Info("starting server", "addr", *addr)
 
@@ -63,7 +49,7 @@ func main() {
 	// we use the log.Fatal() function to log the error message and terminate the
 	// program. Note that any error returned by http.ListenAndServe() is always
 	// non-nil.
-	err := http.ListenAndServe(*addr, mux)
+	err := http.ListenAndServe(*addr, app.routes())
 
 	// * Log the error using custom logger and terminate the application
 	app.logger.Error(err.Error())
