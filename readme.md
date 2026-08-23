@@ -1,3 +1,5 @@
 # Od Blata do Zlata
 
-Vise testna aplikacija za upoznavanje sa swiftom i izradom softwera za macos i ios.
+## Zero AI Golang Project
+
+Mini Golang project to track my finances.
