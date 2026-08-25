@@ -16,20 +16,19 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700"
     />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
-  <body>
-    <header>
-      <h1><a href="/">Od Blata do Zlata</a></h1>
-    </header>
-
+  <body class="bg-black text-white m-6">
     {{template "nav" .}}
 
-    <main>
+    <main class="container max-w-6xl w-full mb-20 mt-10">
       {{with .Flash}}
       <div class="flash">{{.}}</div>
       {{end}} {{template "main" .}}
     </main>
+
     <footer>
       Powered by <a href="https://go.dev/">Go</a> in {{.CurrentYear}}
     </footer>

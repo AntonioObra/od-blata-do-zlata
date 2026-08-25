@@ -11,7 +11,10 @@ import (
 func commonHeaders(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Security-Policy",
-			"default-src 'self'; style-src 'self' fonts.googleapis.com; font-src fonts.gstatic.com")
+			"default-src 'self'; "+
+				"script-src 'self' https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4; "+
+				"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "+
+				"font-src https://fonts.gstatic.com;")
 
 		w.Header().Set("Referrer-Policy", "origin-when-cross-origin")
 		w.Header().Set("X-Content-Type-Options", "nosniff")
