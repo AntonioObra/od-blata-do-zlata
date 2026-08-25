@@ -40,3 +40,8 @@ tr:last-child td {
 th {
   font-weight: bold;
 }
+
+input {
+  border: 1px solid #ffffff;
+  margin: 8px 0;
+}
