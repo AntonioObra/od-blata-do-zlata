@@ -11,12 +11,23 @@ import (
 	"od-blata-do-zlata.obradovic.dev/ui"
 )
 
+type Month struct {
+	Name    string
+	Number  int
+	Year    int
+	Current bool
+}
+
 type templateData struct {
 	CurrentYear     int
 	Form            any
 	Flash           string
 	IsAuthenticated bool
 	CSRFToken       string
+	PreviousYear    int
+	NextYear        int
+	Year            int
+	Months          []Month
 }
 
 func (app *application) newTemplateData(r *http.Request) templateData {

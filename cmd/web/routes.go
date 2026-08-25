@@ -23,15 +23,16 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /{$}", protected.ThenFunc(app.home))
 
-	mux.Handle("GET /track/{month}", protected.ThenFunc(app.month))
+	mux.Handle("GET /track/{year}/{month}", protected.ThenFunc(app.month))
 
-	mux.Handle("GET /track/{month}/income", protected.ThenFunc(app.monthIncome))
-	mux.Handle("GET /track/{month}/income/new", protected.ThenFunc(app.monthIncomeNew))
-	mux.Handle("GET /track/{month}/income/{id}/edit", protected.ThenFunc(app.monthIncomeEdit))
+	mux.Handle("GET /track/{year}/{month}/income", protected.ThenFunc(app.monthIncome))
+	mux.Handle("GET /track/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNew))
+	mux.Handle("GET /track/{year}/{month}/income/{id}/edit", protected.ThenFunc(app.monthIncomeEdit))
 
-	mux.Handle("GET /track/{month}/expense", protected.ThenFunc(app.monthExpense))
-	mux.Handle("GET /track/{month}/expense/new", protected.ThenFunc(app.monthExpenseNew))
-	mux.Handle("GET /track/{month}/expense/{id}/edit", protected.ThenFunc(app.monthExpenseEdit))
+	mux.Handle("GET /track/{year}/{month}/expense", protected.ThenFunc(app.monthExpense))
+	mux.Handle("GET /track/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNew))
+	mux.Handle("GET /track/{year}/{month}/expense/{id}/edit", protected.ThenFunc(app.monthExpenseEdit))
+
 	mux.Handle("POST /user/logout", protected.ThenFunc(app.userLogoutPost))
 
 	standard := alice.New(app.recoverPanic, app.logRequest, commonHeaders)
