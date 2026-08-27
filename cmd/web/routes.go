@@ -27,6 +27,7 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /track/{year}/{month}/income", protected.ThenFunc(app.monthIncome))
 	mux.Handle("GET /track/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNew))
+	mux.Handle("POST /track/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNewPost))
 	mux.Handle("GET /track/{year}/{month}/income/{id}/edit", protected.ThenFunc(app.monthIncomeEdit))
 
 	mux.Handle("GET /track/{year}/{month}/expense", protected.ThenFunc(app.monthExpense))

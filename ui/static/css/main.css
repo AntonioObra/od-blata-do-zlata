@@ -45,3 +45,9 @@ input {
   border: 1px solid #ffffff;
   margin: 8px 0;
 }
+
+button {
+  background-color: oklch(70.4% 0.191 22.216);
+  color: #ffffff;
+  padding: 4px;
+}

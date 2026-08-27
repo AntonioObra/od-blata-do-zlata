@@ -1,12 +1,15 @@
-{{define "title"}}Home{{end}} {{define "main"}}
+{{define "title"}}Track {{.Month}}.{{.Year}}.{{end}} {{define "main"}}
 <section class="flex flex-col gap-4">
   <div class="flex items-center justify-between">
-    <h1 class="text-4xl font-semibold">Income for August 2026.</h1>
+    <h1 class="text-4xl font-semibold">
+      Track finances for {{.Month}}.{{.Year}}.
+    </h1>
 
     <div class="flex items-center gap-6">
-      <a href="/">Add new Income</a>
-
-      <a class="text-emerald-400! flex items-center gap-2 underline" href="/">
+      <a
+        class="text-emerald-400! flex items-center gap-2 underline"
+        href="/track/{{.Year}}/{{.Month}}/income"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -29,7 +32,10 @@
         Income
       </a>
 
-      <a class="flex items-center gap-2 underline" href="/">
+      <a
+        class="flex items-center gap-2 underline"
+        href="/track/{{.Year}}/{{.Month}}/expense"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -53,49 +59,5 @@
       </a>
     </div>
   </div>
-
-  <table class="mt-4">
-    <thead class="">
-      <tr>
-        <th>Date</th>
-        <th>Expense name</th>
-        <th>Expense type</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-    </tbody>
-  </table>
 </section>
 {{end}}

@@ -28,6 +28,7 @@ type templateData struct {
 	NextYear        int
 	Year            int
 	Months          []Month
+	Month           int
 }
 
 func (app *application) newTemplateData(r *http.Request) templateData {

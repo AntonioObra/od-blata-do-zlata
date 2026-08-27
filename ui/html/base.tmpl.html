@@ -25,7 +25,11 @@
 
     <main class="container max-w-6xl w-full mb-20 mt-10">
       {{with .Flash}}
-      <div class="flash">{{.}}</div>
+      <div
+        class="ring-1 ring-red-500 bg-red-200 text-red-500 py-2 px-4 rounded-xl mb-4"
+      >
+        {{.}}
+      </div>
       {{end}} {{template "main" .}}
     </main>
 
