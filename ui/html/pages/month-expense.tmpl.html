@@ -25,7 +25,6 @@
         </svg>
         Add new Expense
       </a>
-
       <a
         class="flex items-center gap-2 underline"
         href="/track/{{.Year}}/{{.Month}}"
@@ -50,48 +49,35 @@
     </div>
   </div>
 
+  {{if .Expenses}}
+  <div>
+    <h2 class="text-xl">
+      Total Expense:
+      <span class="font-bold">{{printf "%.2f" .TotalExpense}} €</span>
+    </h2>
+  </div>
+
   <table class="mt-4">
     <thead class="">
       <tr>
         <th>Date</th>
         <th>Expense name</th>
-        <th>Expense type</th>
         <th>Amount</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
 
+    <tbody>
+      {{range .Expenses}}
       <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
+        <td>{{humanDate .ExpenseDate}}</td>
+        <td>{{.Name}}</td>
+        <td>{{ printf "%.2f" .Amount }} €</td>
       </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
+      {{end}}
     </tbody>
   </table>
+  {{else}}
+  <h2 class="text-xl">No expense found</h2>
+  {{end}}
 </section>
 {{end}}

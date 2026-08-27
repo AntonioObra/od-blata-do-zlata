@@ -21,6 +21,7 @@ type application struct {
 	logger         *slog.Logger
 	users          *models.UserModel
 	incomes        *models.IncomeModel
+	expenses       *models.ExpenseModel
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
@@ -58,6 +59,7 @@ func main() {
 		logger:         logger,
 		users:          &models.UserModel{DB: db},
 		incomes:        &models.IncomeModel{DB: db},
+		expenses:       &models.ExpenseModel{DB: db},
 		templateCache:  templateCache,
 		formDecoder:    formDecoder,
 		sessionManager: sessionManager,

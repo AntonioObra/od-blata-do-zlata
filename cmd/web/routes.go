@@ -32,6 +32,7 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /track/{year}/{month}/expense", protected.ThenFunc(app.monthExpense))
 	mux.Handle("GET /track/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNew))
+	mux.Handle("POST /track/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNewPost))
 	mux.Handle("GET /track/{year}/{month}/expense/{id}/edit", protected.ThenFunc(app.monthExpenseEdit))
 
 	mux.Handle("POST /user/logout", protected.ThenFunc(app.userLogoutPost))

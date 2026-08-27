@@ -1,0 +1,89 @@
+{{define "title"}}Add New Expense {{.Month}}.{{.Year}}.{{end}} {{define "main"}}
+<section class="flex flex-col gap-4">
+  <div class="flex items-center justify-between">
+    <h1 class="text-4xl font-semibold">
+      Add new Expense for {{.Month}}.{{.Year}}.
+    </h1>
+
+    <div class="flex items-center gap-6">
+      <a
+        class="flex items-center gap-2 underline"
+        href="/track/{{.Year}}/{{.Month}}/expense"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-undo2-icon lucide-undo-2"
+        >
+          <path d="M9 14 4 9l5-5" />
+          <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" />
+        </svg>
+        Go Back
+      </a>
+    </div>
+  </div>
+
+  <form
+    method="POST"
+    action="/track/{{.Year}}/{{.Month}}/expense/new"
+    class="max-w-sm"
+  >
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
+
+    <div>
+      <label for="name">Name</label>
+      {{with .Form.FieldErrors.name}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <input
+        type="string"
+        name="name"
+        id="name"
+        value="{{.Form.Name}}"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="amount">Amount</label>
+      {{with .Form.FieldErrors.amount}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <input
+        type="number"
+        step="any"
+        min="0"
+        name="amount"
+        id="amount"
+        value="{{.Form.Amount}}"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="expenseDate">Date</label>
+      {{with .Form.FieldErrors.date}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <input
+        type="date"
+        name="expenseDate"
+        id="expenseDate"
+        value="{{.Form.ExpenseDate}}"
+        required
+      />
+    </div>
+
+    <div>
+      <button type="submit">Add new Expense</button>
+    </div>
+  </form>
+</section>
+{{end}}
