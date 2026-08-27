@@ -116,10 +116,17 @@ func (app *application) monthIncome(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var totalIncome float64
+
+	for _, income := range incomes {
+		totalIncome += income.Amount
+	}
+
 	data := app.newTemplateData(r)
 	data.Year = year
 	data.Month = month
 	data.Incomes = incomes
+	data.TotalIncome = totalIncome
 
 	app.render(w, r, http.StatusOK, "month-income.tmpl.html", data)
 }
