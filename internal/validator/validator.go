@@ -61,3 +61,7 @@ func MaxBytes(value string, n int) bool {
 func Matches(value string, rx *regexp.Regexp) bool {
 	return rx.MatchString(value)
 }
+
+func IsPositive(value float64) bool {
+	return value > 0
+}

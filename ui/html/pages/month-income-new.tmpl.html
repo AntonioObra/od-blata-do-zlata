@@ -35,17 +35,38 @@
 
     <div>
       <label for="name">Name</label>
-      <input type="string" name="name" id="name" />
+      {{with .Form.FieldErrors.name}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <input type="string" name="name" id="name" value="{{.Form.Name}}" />
     </div>
 
     <div>
       <label for="amount">Amount</label>
-      <input type="number" step="any" min="0" name="amount" id="amount" />
+      {{with .Form.FieldErrors.amount}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <input
+        type="number"
+        step="any"
+        min="0"
+        name="amount"
+        id="amount"
+        value="{{.Form.Amount}}"
+      />
     </div>
 
     <div>
       <label for="incomeDate">Date</label>
-      <input type="date" name="incomeDate" id="incomeDate" />
+      {{with .Form.FieldErrors.date}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <input
+        type="date"
+        name="incomeDate"
+        id="incomeDate"
+        value="{{.Form.IncomeDate}}"
+      />
     </div>
 
     <div>

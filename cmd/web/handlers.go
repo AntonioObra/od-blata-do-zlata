@@ -136,10 +136,14 @@ func (app *application) monthIncomeNew(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
+	now := time.Now()
 
 	data := app.newTemplateData(r)
 	data.Year = year
 	data.Month = month
+	data.Form = incomeNewForm{
+		IncomeDate: now.Format("2006-01-02"),
+	}
 
 	app.render(w, r, http.StatusOK, "month-income-new.tmpl.html", data)
 }
@@ -158,15 +162,29 @@ func (app *application) monthIncomeNewPost(w http.ResponseWriter, r *http.Reques
 		form.AddFieldError("incomeDate", "Invalid date")
 	}
 
-	year, err := strconv.Atoi(r.PathValue("year"))
-	if err != nil || year < 1 {
-		http.NotFound(w, r)
-		return
-	}
+	form.CheckField(validator.NotBlank(form.Name), "name", "This field cannot be blank")
+	form.CheckField(validator.MaxChars(form.Name, 100), "name", "This field cannot be more than 100 chars long...")
+	form.CheckField(validator.IsPositive(form.Amount), "amount", "This field cannot be blank!")
 
-	month, err := strconv.Atoi(r.PathValue("month"))
-	if err != nil || month < 1 || month > 12 {
-		http.NotFound(w, r)
+	if !form.Valid() {
+		year, err := strconv.Atoi(r.PathValue("year"))
+		if err != nil || year < 1 {
+			http.NotFound(w, r)
+			return
+		}
+
+		month, err := strconv.Atoi(r.PathValue("month"))
+		if err != nil || month < 1 || month > 12 {
+			http.NotFound(w, r)
+			return
+		}
+
+		data := app.newTemplateData(r)
+		data.Form = form
+		data.Year = year
+		data.Month = month
+
+		app.render(w, r, http.StatusUnprocessableEntity, "month-income-new.tmpl.html", data)
 		return
 	}
 
