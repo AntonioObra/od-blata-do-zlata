@@ -53,7 +53,8 @@
 
   <div>
     <h2 class="text-xl">
-      Total Income: <span class="font-bold">{{.TotalIncome}}</span>
+      Total Income:
+      <span class="font-bold">{{printf "%.2f" .TotalIncome}} €</span>
     </h2>
   </div>
 
@@ -71,7 +72,7 @@
       <tr>
         <td>{{humanDate .IncomeDate}}</td>
         <td>{{.Name}}</td>
-        <td>{{.Amount}}</td>
+        <td>{{ printf "%.2f" .Amount }} €</td>
       </tr>
       {{end}}
     </tbody>

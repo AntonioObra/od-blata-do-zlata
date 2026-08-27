@@ -30,7 +30,11 @@
     </div>
   </div>
 
-  <form method="POST" action="/track/{{.Year}}/{{.Month}}/income/new">
+  <form
+    method="POST"
+    action="/track/{{.Year}}/{{.Month}}/income/new"
+    class="max-w-sm"
+  >
     <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
 
     <div>
