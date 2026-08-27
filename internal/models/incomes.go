@@ -71,3 +71,22 @@ func (m *IncomeModel) List(userID int, year int, month int) ([]Income, error) {
 
 	return incomes, nil
 }
+
+func (m *IncomeModel) GetTotal(userID int, year int, month int) (float64, error) {
+	stmt := `
+		SELECT COALESCE(SUM(amount), 0)
+		FROM incomes
+		WHERE user_id = ?
+		  AND YEAR(income_date) = ?
+		  AND MONTH(income_date) = ?
+	`
+
+	var total float64
+
+	err := m.DB.QueryRow(stmt, userID, year, month).Scan(&total)
+	if err != nil {
+		return 0, err
+	}
+
+	return total, nil
+}

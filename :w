@@ -114,7 +114,6 @@ func (app *application) month(w http.ResponseWriter, r *http.Request) {
 	data.Month = month
 	data.TotalIncome = totalIncome
 	data.TotalExpense = totalExpense
-	data.TotalAmount = totalIncome - totalExpense
 
 	app.render(w, r, http.StatusOK, "month.tmpl.html", data)
 }

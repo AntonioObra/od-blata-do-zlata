@@ -35,6 +35,7 @@ type templateData struct {
 	TotalIncome     float64
 	Expenses        []models.Expense
 	TotalExpense    float64
+	TotalAmount     float64
 }
 
 func (app *application) newTemplateData(r *http.Request) templateData {

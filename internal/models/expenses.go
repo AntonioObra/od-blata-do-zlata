@@ -71,3 +71,22 @@ func (m *ExpenseModel) List(userID int, year int, month int) ([]Expense, error) 
 
 	return expenses, nil
 }
+
+func (m *ExpenseModel) GetTotal(userID int, year int, month int) (float64, error) {
+	stmt := `
+		SELECT COALESCE(SUM(amount), 0)
+		FROM expenses
+		WHERE user_id = ?
+		  AND YEAR(expense_date) = ?
+		  AND MONTH(expense_date) = ?
+	`
+
+	var total float64
+
+	err := m.DB.QueryRow(stmt, userID, year, month).Scan(&total)
+	if err != nil {
+		return 0, err
+	}
+
+	return total, nil
+}
