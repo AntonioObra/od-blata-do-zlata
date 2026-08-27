@@ -1,9 +1,14 @@
 {{define "nav"}}
 <nav class="flex items-center justify-between">
   <div class="">
-    <a href="/">Od Blata do Zlata</a>
     {{if .IsAuthenticated}}
-    <a href="/snippet/create">Create snippet</a>
+    <a href="/">Od Blata do Zlata</a>
+    <a href="/track/{{.CurrentYear}}/{{.CurrentMonth}}/income/new"
+      >Add new Income</a
+    >
+    <a href="/track/{{.CurrentYear}}/{{.CurrentMonth}}/expense/new"
+      >Add new Expense</a
+    >
     {{end}}
   </div>
   <div>
