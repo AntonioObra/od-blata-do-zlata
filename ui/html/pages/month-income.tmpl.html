@@ -50,7 +50,6 @@
   </div>
 
   {{if .Incomes}}
-
   <div>
     <h2 class="text-xl">
       Total Income:
@@ -77,6 +76,8 @@
       {{end}}
     </tbody>
   </table>
+  {{else}}
+  <h2 class="text-xl">No income found</h2>
   {{end}}
 </section>
 {{end}}
