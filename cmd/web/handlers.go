@@ -105,9 +105,21 @@ func (app *application) monthIncome(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	id := app.sessionManager.GetInt(r.Context(), "authenticatedUserID")
+	if id == 0 {
+		return
+	}
+
+	incomes, err := app.incomes.List(id, year, month)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+
 	data := app.newTemplateData(r)
 	data.Year = year
 	data.Month = month
+	data.Incomes = incomes
 
 	app.render(w, r, http.StatusOK, "month-income.tmpl.html", data)
 }

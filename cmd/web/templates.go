@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/justinas/nosurf"
+	"od-blata-do-zlata.obradovic.dev/internal/models"
 	"od-blata-do-zlata.obradovic.dev/ui"
 )
 
@@ -29,6 +30,7 @@ type templateData struct {
 	Year            int
 	Months          []Month
 	Month           int
+	Incomes         []models.Income
 }
 
 func (app *application) newTemplateData(r *http.Request) templateData {
@@ -45,7 +47,7 @@ func humanDate(t time.Time) string {
 		return ""
 	}
 
-	return t.Format("02 Jan 2006 at 15:04")
+	return t.Format("02.01.2006")
 }
 
 var functions = template.FuncMap{

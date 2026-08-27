@@ -49,48 +49,26 @@
     </div>
   </div>
 
+  {{if .Incomes}}
   <table class="mt-4">
     <thead class="">
       <tr>
         <th>Date</th>
         <th>Expense name</th>
-        <th>Expense type</th>
         <th>Amount</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
 
+    <tbody>
+      {{range .Incomes}}
       <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
+        <td>{{humanDate .IncomeDate}}</td>
+        <td>{{.Name}}</td>
+        <td>{{.Amount}}</td>
       </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>12.06.2026.</td>
-        <td>Cigarete</td>
-        <td>Ostalo</td>
-        <td>5</td>
-      </tr>
+      {{end}}
     </tbody>
   </table>
+  {{end}}
 </section>
 {{end}}

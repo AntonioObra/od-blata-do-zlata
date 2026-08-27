@@ -35,53 +35,39 @@ func (m *IncomeModel) Insert(userID int, name string, amount float64, incomeDate
 	return int(id), nil
 }
 
-// func (m *SnippetModel) Get(id int) (Snippet, error) {
-// 	stmt := `SELECT id, title, content, created, expires FROM snippets
-// 	WHERE expires > UTC_TIMESTAMP() AND id = ?`
-//
-// 	row := m.DB.QueryRow(stmt, id)
-//
-// 	var s Snippet
-//
-// 	err := row.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
-// 	if err != nil {
-// 		if errors.Is(err, sql.ErrNoRows) {
-// 			return Snippet{}, ErrNoRecord
-// 		} else {
-// 			return Snippet{}, err
-// 		}
-// 	}
-//
-// 	return s, nil
-// }
-//
-// func (m *SnippetModel) Latest() ([]Snippet, error) {
-// 	stmt := `SELECT id, title, content, created, expires FROM snippets
-// 	WHERE expires > UTC_TIMESTAMP() ORDER BY id DESC LIMIT 10`
-//
-// 	rows, err := m.DB.Query(stmt)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-//
-// 	defer rows.Close()
-//
-// 	var snippets []Snippet
-//
-// 	for rows.Next() {
-// 		var s Snippet
-//
-// 		err = rows.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
-// 		if err != nil {
-// 			return nil, err
-// 		}
-//
-// 		snippets = append(snippets, s)
-// 	}
-//
-// 	if err = rows.Err(); err != nil {
-// 		return nil, err
-// 	}
-//
-// 	return snippets, nil
-// }
+func (m *IncomeModel) List(userID int, year int, month int) ([]Income, error) {
+	stmt := `
+		SELECT id, name, amount, income_date
+		FROM incomes
+		WHERE user_id = ?
+		  AND YEAR(income_date) = ?
+		  AND MONTH(income_date) = ?
+		ORDER BY income_date DESC
+	`
+
+	rows, err := m.DB.Query(stmt, userID, year, month)
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	var incomes []Income
+
+	for rows.Next() {
+		var i Income
+
+		err = rows.Scan(&i.ID, &i.Name, &i.Amount, &i.IncomeDate)
+		if err != nil {
+			return nil, err
+		}
+
+		incomes = append(incomes, i)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return incomes, nil
+}
