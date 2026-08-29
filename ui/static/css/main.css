@@ -7,7 +7,7 @@ body {
 }
 
 a {
-  color: oklch(70.4% 0.191 22.216);
+  color: oklch(62.3% 0.214 259.815);
   text-decoration: underline;
 }
 
@@ -47,7 +47,7 @@ input {
 }
 
 button {
-  background-color: oklch(70.4% 0.191 22.216);
+  background-color: oklch(62.3% 0.214 259.815);
   color: #ffffff;
   padding: 4px;
 }
