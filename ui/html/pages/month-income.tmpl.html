@@ -62,6 +62,7 @@
       <tr>
         <th>Date</th>
         <th>Expense name</th>
+        <th>Type</th>
         <th>Amount</th>
       </tr>
     </thead>
@@ -71,6 +72,7 @@
       <tr>
         <td>{{humanDate .IncomeDate}}</td>
         <td>{{.Name}}</td>
+        <td>{{ possibleNull .Type }}</td>
         <td>{{ printf "%.2f" .Amount }} €</td>
       </tr>
       {{end}}

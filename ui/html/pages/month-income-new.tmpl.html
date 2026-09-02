@@ -82,6 +82,19 @@
     </div>
 
     <div>
+      <label for="type_id">Type</label>
+      {{with .Form.FieldErrors.type}}
+      <label class="error">{{.}}</label>
+      {{end}}
+      <select name="type_id" id="type_id">
+        <option value="">Select a type</option>
+        {{range .Types}}
+        <option value="{{.ID}}">{{.Name}}</option>
+        {{end}}
+      </select>
+    </div>
+
+    <div>
       <button type="submit">Add new Income</button>
     </div>
   </form>

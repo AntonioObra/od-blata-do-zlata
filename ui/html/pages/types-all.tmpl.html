@@ -1,13 +1,10 @@
-{{define "title"}}Expense {{.Month}}.{{.Year}}.{{end}} {{define "main"}}
+{{define "title"}}All Types{{end}} {{define "main"}}
 <section class="flex flex-col gap-4">
   <div class="flex items-center justify-between">
-    <h1 class="text-4xl font-semibold">Expense for {{.Month}}.{{.Year}}.</h1>
+    <h1 class="text-4xl font-semibold">All Types</h1>
 
     <div class="flex items-center gap-6">
-      <a
-        class="flex items-center gap-2 underline"
-        href="/track/{{.Year}}/{{.Month}}/expense/new"
-      >
+      <a class="flex items-center gap-2 underline" href="/track/types/new">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -23,12 +20,9 @@
           <path d="M5 12h14" />
           <path d="M12 5v14" />
         </svg>
-        Add new Expense
+        Add new Type
       </a>
-      <a
-        class="flex items-center gap-2 underline"
-        href="/track/{{.Year}}/{{.Month}}"
-      >
+      <a class="flex items-center gap-2 underline" href="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -49,37 +43,26 @@
     </div>
   </div>
 
-  {{if .Expenses}}
-  <div>
-    <h2 class="text-xl">
-      Total Expense:
-      <span class="font-bold">{{printf "%.2f" .TotalExpense}} €</span>
-    </h2>
-  </div>
-
+  {{if .Types}}
   <table class="mt-4">
     <thead class="">
       <tr>
-        <th>Date</th>
-        <th>Expense name</th>
-        <th>Type</th>
-        <th>Amount</th>
+        <th>ID</th>
+        <th>Name</th>
       </tr>
     </thead>
 
     <tbody>
-      {{range .Expenses}}
+      {{range .Types}}
       <tr>
-        <td>{{humanDate .ExpenseDate}}</td>
+        <td>{{.ID}}</td>
         <td>{{.Name}}</td>
-        <td>{{ possibleNull .Type }}</td>
-        <td>{{ printf "%.2f" .Amount }} €</td>
       </tr>
       {{end}}
     </tbody>
   </table>
   {{else}}
-  <h2 class="text-xl">No expense found</h2>
+  <h2 class="text-xl">No types found</h2>
   {{end}}
 </section>
 {{end}}

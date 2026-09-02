@@ -23,6 +23,10 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /{$}", protected.ThenFunc(app.home))
 
+	mux.Handle("GET /track/types", protected.ThenFunc(app.typesAll))
+	mux.Handle("GET /track/types/new", protected.ThenFunc(app.typesNew))
+	mux.Handle("POST /track/types/new", protected.ThenFunc(app.typesNewPost))
+
 	mux.Handle("GET /track/{year}/{month}", protected.ThenFunc(app.month))
 
 	mux.Handle("GET /track/{year}/{month}/income", protected.ThenFunc(app.monthIncome))

@@ -36,6 +36,7 @@ type templateData struct {
 	Expenses        []models.Expense
 	TotalExpense    float64
 	TotalAmount     float64
+	Types           []models.Type
 }
 
 func (app *application) newTemplateData(r *http.Request) templateData {
@@ -56,8 +57,17 @@ func humanDate(t time.Time) string {
 	return t.Format("02.01.2006")
 }
 
+func possibleNull(t *models.Type) string {
+	if t == nil {
+		return "---"
+	}
+
+	return t.Name
+}
+
 var functions = template.FuncMap{
-	"humanDate": humanDate,
+	"humanDate":    humanDate,
+	"possibleNull": possibleNull,
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {

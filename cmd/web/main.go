@@ -22,6 +22,7 @@ type application struct {
 	users          *models.UserModel
 	incomes        *models.IncomeModel
 	expenses       *models.ExpenseModel
+	types          *models.TypeModel
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
@@ -60,6 +61,7 @@ func main() {
 		users:          &models.UserModel{DB: db},
 		incomes:        &models.IncomeModel{DB: db},
 		expenses:       &models.ExpenseModel{DB: db},
+		types:          &models.TypeModel{DB: db},
 		templateCache:  templateCache,
 		formDecoder:    formDecoder,
 		sessionManager: sessionManager,

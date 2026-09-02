@@ -1,14 +1,17 @@
 {{define "nav"}}
 <nav class="flex items-center justify-between">
-  <div class="">
+  <div class="space-x-2">
     {{if .IsAuthenticated}}
-    <a href="/">Od Blata do Zlata</a>
+    <a href="/" class="mr-4">Od Blata do Zlata</a>
+
     <a href="/track/{{.CurrentYear}}/{{.CurrentMonth}}/income/new"
       >Add new Income</a
     >
     <a href="/track/{{.CurrentYear}}/{{.CurrentMonth}}/expense/new"
       >Add new Expense</a
     >
+
+    <a href="/track/types/new">Add new type</a>
     {{end}}
   </div>
   <div>
