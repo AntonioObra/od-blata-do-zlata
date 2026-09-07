@@ -62,14 +62,14 @@
 
   <div>
     <h1 class="text-3xl text-blue-200">
-      Current Balance: <span>{{.TotalAmount}} €</span>
+      Current Balance: <span>{{printf "%.2f" .TotalAmount}} €</span>
     </h1>
     <hr />
     <h2 class="text-2xl text-emerald-200">
-      Total Income: <span>{{.TotalIncome}} €</span>
+      Total Income: <span>{{printf "%.2f" .TotalIncome}} €</span>
     </h2>
     <h2 class="text-2xl text-red-200">
-      Total Expense: <span>{{.TotalExpense}} €</span>
+      Total Expense: <span>{{printf "%.2f" .TotalExpense}} €</span>
     </h2>
   </div>
 </section>
