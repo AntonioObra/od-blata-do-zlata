@@ -4,6 +4,8 @@
 
 Mini Golang project to track my finances.
 
+<img width="3420" height="2214" alt="image" src="https://github.com/user-attachments/assets/6cd544c5-9574-4d65-baf9-a65027f76906" />
+
 ## Usage
 
 ### How to run?
