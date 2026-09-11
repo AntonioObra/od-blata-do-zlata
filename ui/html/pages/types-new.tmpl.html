@@ -4,7 +4,7 @@
     <h1 class="text-4xl font-semibold">Add new Type</h1>
 
     <div class="flex items-center gap-6">
-      <a class="flex items-center gap-2 underline" href="/track/types">
+      <a class="flex items-center gap-2 underline" href="/finances/types">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <form method="POST" action="/track/types/new" class="max-w-sm">
+  <form method="POST" action="/finances/types/new" class="max-w-sm">
     <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
 
     <div>

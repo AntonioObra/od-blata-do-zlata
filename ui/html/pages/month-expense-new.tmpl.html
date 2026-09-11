@@ -8,7 +8,7 @@
     <div class="flex items-center gap-6">
       <a
         class="flex items-center gap-2 underline"
-        href="/track/{{.Year}}/{{.Month}}/expense"
+        href="/finances/{{.Year}}/{{.Month}}/expense"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@
 
   <form
     method="POST"
-    action="/track/{{.Year}}/{{.Month}}/expense/new"
+    action="/finances/{{.Year}}/{{.Month}}/expense/new"
     class="max-w-sm"
   >
     <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />

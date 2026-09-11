@@ -23,21 +23,21 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /{$}", protected.ThenFunc(app.home))
 
-	mux.Handle("GET /track/types", protected.ThenFunc(app.typesAll))
-	mux.Handle("GET /track/types/new", protected.ThenFunc(app.typesNew))
-	mux.Handle("POST /track/types/new", protected.ThenFunc(app.typesNewPost))
+	mux.Handle("GET /finances/types", protected.ThenFunc(app.typesAll))
+	mux.Handle("GET /finances/types/new", protected.ThenFunc(app.typesNew))
+	mux.Handle("POST /finances/types/new", protected.ThenFunc(app.typesNewPost))
 
-	mux.Handle("GET /track/{year}/{month}", protected.ThenFunc(app.month))
+	mux.Handle("GET /finances/{year}/{month}", protected.ThenFunc(app.month))
 
-	mux.Handle("GET /track/{year}/{month}/income", protected.ThenFunc(app.monthIncome))
-	mux.Handle("GET /track/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNew))
-	mux.Handle("POST /track/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNewPost))
-	mux.Handle("GET /track/{year}/{month}/income/{id}/edit", protected.ThenFunc(app.monthIncomeEdit))
+	mux.Handle("GET /finances/{year}/{month}/income", protected.ThenFunc(app.monthIncome))
+	mux.Handle("GET /finances/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNew))
+	mux.Handle("POST /finances/{year}/{month}/income/new", protected.ThenFunc(app.monthIncomeNewPost))
+	mux.Handle("GET /finances/{year}/{month}/income/{id}/edit", protected.ThenFunc(app.monthIncomeEdit))
 
-	mux.Handle("GET /track/{year}/{month}/expense", protected.ThenFunc(app.monthExpense))
-	mux.Handle("GET /track/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNew))
-	mux.Handle("POST /track/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNewPost))
-	mux.Handle("GET /track/{year}/{month}/expense/{id}/edit", protected.ThenFunc(app.monthExpenseEdit))
+	mux.Handle("GET /finances/{year}/{month}/expense", protected.ThenFunc(app.monthExpense))
+	mux.Handle("GET /finances/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNew))
+	mux.Handle("POST /finances/{year}/{month}/expense/new", protected.ThenFunc(app.monthExpenseNewPost))
+	mux.Handle("GET /finances/{year}/{month}/expense/{id}/edit", protected.ThenFunc(app.monthExpenseEdit))
 
 	mux.Handle("POST /user/logout", protected.ThenFunc(app.userLogoutPost))
 

@@ -161,7 +161,7 @@ func (app *application) monthExpenseNewPost(w http.ResponseWriter, r *http.Reque
 		w,
 		r,
 		fmt.Sprintf(
-			"/track/%d/%d/expense",
+			"/finances/%d/%d/expense",
 			expenseDate.Year(),
 			expenseDate.Month(),
 		),

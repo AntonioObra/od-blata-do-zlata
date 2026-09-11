@@ -161,7 +161,7 @@ func (app *application) monthIncomeNewPost(w http.ResponseWriter, r *http.Reques
 		w,
 		r,
 		fmt.Sprintf(
-			"/track/%d/%d/income",
+			"/finances/%d/%d/income",
 			incomeDate.Year(),
 			incomeDate.Month(),
 		),
